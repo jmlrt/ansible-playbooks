@@ -1,0 +1,9 @@
+---
+- name: ensure owncloud apt-key is installed
+  apt_key: url={{ owncloud_url }}/Release.key
+
+- name: ensure owncloud repository is installed
+  apt_repository: repo='deb {{ owncloud_url }}/ /' filename=owncloud update_cache=yes
+
+- name: ensure owncloud-client is at the latest version
+  apt: name=owncloud-client state=latest

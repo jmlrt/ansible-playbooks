@@ -1,0 +1,17 @@
+---
+- name: ensure dev tools are installed
+  apt: name={{ item }}
+  with_items:
+  - build-essential
+  - git
+  - git-cola
+
+- name: ensure python tools are installed
+  apt: name={{ item }}
+  with_items:
+  - python-dev
+  - python-pip
+  - python-virtualenv
+
+- include: atom.yml
+- include: docker.yml

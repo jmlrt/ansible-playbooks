@@ -1,0 +1,7 @@
+---
+- name: ensure multimedia packages are installed
+  apt: name={{ item }}
+  with_items:
+  - "{{ common_packages }}"
+
+- include: spotify.yml

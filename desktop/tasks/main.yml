@@ -1,0 +1,11 @@
+---
+- name: ensure tools are installed
+  apt: name={{ item }}
+  with_items:
+  - exfat-fuse
+  - exfat-utils
+  - hfsprogs
+  - redshift-gtk
+
+- include: keepassx.yml
+- include: owncloud-client.yml

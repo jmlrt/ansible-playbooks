@@ -1,0 +1,11 @@
+---
+ansible_cache: /home/{{ ansible_user }}/.cache/ansible
+libgcrypt11_package: libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb
+libgcrypt11_url: https://launchpad.net/ubuntu/+archive/primary/+files
+spotify_repo: http://repository.spotify.com
+
+common_packages:
+  - chromium-browser
+  - skype
+  - ubuntu-restricted-extras
+  - vlc 

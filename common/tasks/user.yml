@@ -1,0 +1,22 @@
+---
+- name: ensure user exists
+  user: name={{ user }} password="{{ lookup('file','files/private-{{ user }}.passwd') }}"
+
+- name: ensure ssh public key is deployed
+  authorized_key: user={{ user }} key="{{ lookup('file','files/private-{{ user }}.pub') }}"
+
+- name: ensure sudo is installed
+  apt: name=sudo
+
+- name: ensure user can do sudo commands
+  lineinfile: dest=/etc/sudoers state=present regexp='^{{ user }} ALL\=' line='{{ user }} ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
+
+- name: ensure zsh is installed
+  apt: name=zsh
+
+- name: ensure user shell is zsh
+  user: name={{ user }} shell=/usr/bin/zsh
+
+- name: ensure SSH user connection is enabled
+  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='AllowUsers {{ user }}' line='AllowUsers {{ user }}'
+  notify: restart ssh

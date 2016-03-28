@@ -1,0 +1,10 @@
+---
+common_packages:
+  - curl
+  - git
+  - htop
+  - nmap
+  - tmux
+  - vim
+  - wget
+  - zsh

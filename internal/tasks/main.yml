@@ -1,0 +1,6 @@
+---
+- name: ensure avahi-daemon is installed
+  apt: name=avahi-daemon
+
+- name: ensure avahi-daemon is running (and enable it at boot)
+  service: name=avahi-daemon state=started enabled=yes

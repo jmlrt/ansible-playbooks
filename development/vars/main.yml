@@ -1,0 +1,6 @@
+---
+ansible_cache: /home/{{ ansible_user }}/.cache/ansible
+atom_url: https://atom.io/download/deb
+atom_package: atom-amd64.deb
+compose_url: https://github.com/docker/compose/releases/download/1.6.2/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
+docker_repo: https://apt.dockerproject.org/repo {{ ansible_distribution|lower }}-{{ ansible_distribution_release }} main

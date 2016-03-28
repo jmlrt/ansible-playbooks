@@ -1,0 +1,6 @@
+---
+- name: ensure keepassx repository is installed
+  apt_repository: repo='ppa:keepassx/daily' filename=keepassx update_cache=yes
+
+- name: ensure keepassx is at the latest version
+  apt: name=keepassx state=latest

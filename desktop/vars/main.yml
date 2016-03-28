@@ -1,0 +1,2 @@
+---
+owncloud_url: http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/{{ ansible_distribution }}_{{ ansible_distribution_version }}

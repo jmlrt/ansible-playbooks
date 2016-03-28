@@ -1,0 +1,11 @@
+---
+- name: ensure ntp is at the latest version
+  apt: name=ntp state=latest
+
+- name: ensure ntp is running (and enable it at boot)
+  service: name=ntp state=started enabled=yes
+
+- name: ensure user pi doesn't exists
+  user: name=pi state=absent remove=yes
+
+- include: ufw.yml

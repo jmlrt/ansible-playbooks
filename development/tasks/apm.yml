@@ -1,0 +1,12 @@
+---
+- name: ensure atom plugin {{ package }} is installed
+  shell: "apm list | grep {{ package }}"
+  become_user: "{{ ansible_user }}"
+  ignore_errors: True
+  register: result
+  changed_when: False
+
+- name: install atom plugin {{ package }}
+  command: apm install {{ package }}
+  become_user: "{{ ansible_user }}"
+  when: result|failed

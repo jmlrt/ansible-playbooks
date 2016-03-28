@@ -1,0 +1,14 @@
+---
+- name: ensure ssh is at the latest version
+  apt: name=openssh-server
+
+- name: ensure ssh is running (and enable it at boot)
+  service: name=ssh state=started enabled=yes
+
+- name: ensure X11Forwarding is disabled
+  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='X11Forwarding' line='X11Forwarding no'
+  notify: restart ssh
+
+- name: ensure PermitRootLogin is disabled
+  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='PermitRootLogin' line='PermitRootLogin no'
+  notify: restart ssh
