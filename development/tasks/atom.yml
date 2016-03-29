@@ -6,7 +6,24 @@
 - name: ensure atom is installed
   apt: deb={{ ansible_cache }}/{{ atom_package }}
 
+- include: apm.yml package=atom-beautify
+- include: apm.yml package=atom-jinja2
+- include: apm.yml package=atom-minify
+- include: apm.yml package=count-word
 - include: apm.yml package=language-ansible
 - include: apm.yml package=language-diff
 - include: apm.yml package=language-docker
+- include: apm.yml package=language-terraform
+- include: apm.yml package=linter
+- include: apm.yml package=linter-ansible-linting
+- include: apm.yml package=linter-docker
+- include: apm.yml package=linter-flake8
+- include: apm.yml package=linter-json-lint
+- include: apm.yml package=linter-pep8
+- include: apm.yml package=linter-pylint
+- include: apm.yml package=linter-shellcheck
+- include: apm.yml package=linter-tidy
+- include: apm.yml package=minimap
+- include: apm.yml package=pretty-json
+- include: apm.yml package=sort-lines
 - include: apm.yml package=split-diff
