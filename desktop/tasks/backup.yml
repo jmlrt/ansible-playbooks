@@ -7,10 +7,10 @@
 
 #FIXME: dconf-WARNING **: failed to commit changes to dconf: Cannot autolaunch D-Bus without X11 $DISPLAY
 - name: configure deja-dup
-  command: gsettings set org.gnome.DejaDup {{ item.key }} '{{ item.value }}'
-  with_dict: "{{ dejadup }}"
+  command: gsettings set org.gnome.DejaDup {{ item.key }} {{ item.value }}
+  with_dict: "{{ dejadup.root }}"
 
 #FIXME: dconf-WARNING **: failed to commit changes to dconf: Cannot autolaunch D-Bus without X11 $DISPLAY
 - name: configure deja-dup s3 backend
-  command: gsettings set org.gnome.DejaDup.S3 {{ item.key }} '{{ item.value }}'
+  command: gsettings set org.gnome.DejaDup.S3 {{ item.key }} {{ item.value }}
   with_dict: "{{ dejadup.s3 }}"
