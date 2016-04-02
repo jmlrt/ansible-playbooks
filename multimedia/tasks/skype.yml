@@ -1,0 +1,9 @@
+---
+- name: ensure ubuntu multi-arch is enabled
+  command: dpkg --add-architecture i386
+
+- name: ensure skype repository is installed
+  apt_repository: repo='deb {{ skype_repo }} {{ ansible_distribution_release }} partner' filename=partner update_cache=yes mode=644
+
+- name: ensure skype is at the latest version
+  apt: name=skype state=latest
