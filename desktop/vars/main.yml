@@ -1,2 +1,15 @@
 ---
 owncloud_url: http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/{{ ansible_distribution }}_{{ ansible_distribution_version }}
+
+dejadup:
+  periodic: 'true'
+  backend: 's3'
+  prompt-check: 'disabled'
+  include-list: "{{ dejadup_all.include }}"
+  exclude-list: "{{ dejadup_all.exclude }}"
+  periodic-period: 1
+  delete-after: 182
+  s3:
+    id: '{{ dejadup_all.s3.id }}'
+    bucket: '{{ dejadup_all.s3.bucket }}'
+    folder: '{{ ansible_hostname }}'

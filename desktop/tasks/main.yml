@@ -9,3 +9,4 @@
 
 - include: keepassx.yml
 - include: owncloud-client.yml
+- include: backup.yml user={{ ansible_user }}
