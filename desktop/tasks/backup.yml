@@ -5,12 +5,20 @@
 - name: ensure python-boto is installed
   apt: name=python-boto state=installed
 
-#FIXME: dconf-WARNING **: failed to commit changes to dconf: Cannot autolaunch D-Bus without X11 $DISPLAY
+- name: start dbus
+  command: dbus-launch --exit-with-session true
+  become_user: "{{ ansible_user }}"
+
 - name: configure deja-dup
   command: gsettings set org.gnome.DejaDup {{ item.key }} {{ item.value }}
   with_dict: "{{ dejadup.root }}"
+  become_user: "{{ ansible_user }}"
 
-#FIXME: dconf-WARNING **: failed to commit changes to dconf: Cannot autolaunch D-Bus without X11 $DISPLAY
 - name: configure deja-dup s3 backend
   command: gsettings set org.gnome.DejaDup.S3 {{ item.key }} {{ item.value }}
   with_dict: "{{ dejadup.s3 }}"
+  become_user: "{{ ansible_user }}"
+
+- name: stop dbus
+  shell: kill -15 $(ps -fu {{ ansible_user }} | awk '/dbus-launch --exit-with-session true/ && !/grep/ {print $2}')
+  become_user: "{{ ansible_user }}"
