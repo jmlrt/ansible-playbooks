@@ -9,7 +9,7 @@
   apt_key: keyserver=p80.pool.sks-keyservers.net id=58118E89F3A912897C070ADBF76221572C52609D
 
 - name: ensure docker repository is installed
-  apt_repository: repo='deb {{ docker_repo }}' filename=docker update_cache=yes
+  apt_repository: repo='deb {{ docker_repo }}' filename=docker update_cache=yes mode=644
 
 - name: ensure that apt is pulling from the right repository
   command: apt-cache policy docker-engine

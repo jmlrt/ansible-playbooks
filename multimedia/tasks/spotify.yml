@@ -3,7 +3,7 @@
   apt_key: keyserver=keyserver.ubuntu.com state=present id=BBEBDCB318AD50EC6865090613B00F1FD2C19886
 
 - name: ensure spotify repository is installed
-  apt_repository: repo='deb {{ spotify_repo }} stable non-free' filename=spotify update_cache=yes
+  apt_repository: repo='deb {{ spotify_repo }} stable non-free' filename=spotify update_cache=yes mode=644
 
 - name: ensure spotify-client is at the latest version
   apt: name=spotify-client state=latest
