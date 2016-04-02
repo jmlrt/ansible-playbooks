@@ -13,5 +13,6 @@
   - python-pip
   - python-virtualenv
 
+- include: environment.yml user={{ ansible_user }}
 - include: atom.yml
 - include: docker.yml
