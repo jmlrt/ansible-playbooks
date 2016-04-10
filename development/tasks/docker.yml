@@ -28,3 +28,7 @@
 
 - name: ensure docker-compose is installed
   get_url: url={{ compose_url }} dest=/usr/local/bin/docker-compose
+
+- name: ensure docker environment file exists
+  copy: dest=/home/{{ user }}/.environment.d/40docker.sh src="files/env_40docker.sh"
+          mode=0755 owner={{ user }} group={{ ansible_group }}

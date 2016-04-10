@@ -1,4 +1,10 @@
 ---
+- name: ensure apps directory exists
+  file: path=/home/{{ ansible_user }}/.apps state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
+
+- name: ensure environment directory exists
+  file: path=/home/{{ ansible_user }}/.environment.d state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
+
 - name: ensure ansible cache directory exists
   file: path=/home/{{ ansible_user }}/.cache/ansible state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
 
@@ -17,5 +23,13 @@
   alternatives: name=editor path=/usr/bin/vim
 
 - include: user.yml user={{ ansible_user }}
-- include: environment.yml user={{ ansible_user }}
 - include: ssh.yml
+
+- name: ensure environment files exist
+  copy: dest=/home/{{ ansible_user }}/.environment.d/{{ item }}.sh src="files/env_{{ item }}.sh"
+          mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
+  with_items:
+    - 10debian
+    - 90others
+    - 40git
+    - 10shell

@@ -1,0 +1,22 @@
+---
+- name: ensure python tools are installed
+  apt: name={{ item }}
+  with_items:
+    - python-dev
+    - python-pip
+    - python-virtualenv
+
+- name: ensure python environment file exists
+  copy: dest=/home/{{ user }}/.environment.d/20python.sh src="files/env_20python.sh"
+          mode=0755 owner={{ user }} group={{ ansible_group }}
+
+- name: create virtualenv for python2.7
+  command: virtualenv /home/{{ user }}/.apps/venv
+
+- name: ensure python packages are installed in virtualenv
+  pip: name={{ item }} virtualenv=/home/{{ user }}/.apps/venv
+  with_items:
+    - ansible
+    - awscli
+    - boto3
+

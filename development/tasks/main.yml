@@ -6,13 +6,6 @@
   - git
   - git-cola
 
-- name: ensure python tools are installed
-  apt: name={{ item }}
-  with_items:
-  - python-dev
-  - python-pip
-  - python-virtualenv
-
-- include: environment.yml user={{ ansible_user }}
+- include: python.yml user={{ ansible_user }}
 - include: atom.yml
-- include: docker.yml
+- include: docker.yml user={{ ansible_user }}
