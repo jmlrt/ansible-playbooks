@@ -1,0 +1,6 @@
+---
+- name: ensure /tmp is tmpfs mount
+  mount: name=/tmp src=tmpfs fstype=tmpfs opts='size=1g' state=present
+
+- name: ensure zram-config is installed
+  apt: name=zram-config state=installed
