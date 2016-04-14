@@ -9,6 +9,7 @@
 
 - include: keepassx.yml
 - include: owncloud-client.yml
-- include: backup.yml user={{ ansible_user }}
+- include: backup.yml
+  when: dejadup_all.state
 - include: ssd.yml
   when: ssd
