@@ -5,6 +5,7 @@
   - build-essential
   - git
   - git-cola
+  - shellcheck
 
 - include: python.yml
 - include: atom.yml

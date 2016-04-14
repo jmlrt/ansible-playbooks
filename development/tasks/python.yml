@@ -19,6 +19,8 @@
     - ansible
     - awscli
     - boto3
+    - fabric
+    - jupyter
 
 - name: ensure python3 tools are installed
   apt: name={{ item }}
@@ -29,3 +31,8 @@
 
 - name: create virtualenv for python3
   command: virtualenv /home/{{ my_user }}/.apps/venv3
+
+- name: ensure python3 packages are installed in virtualenv
+  pip: name={{ item }} virtualenv=/home/{{ my_user }}/.apps/venv3
+  with_items:
+    - subuser
