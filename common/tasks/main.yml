@@ -1,6 +1,6 @@
 ---
 - name: ensure ansible cache directory exists
-  file: path=/home/{{ ansible_user }}/.cache/ansible state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
+  file: path={{ ansible_cache }} state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
 
 - name: ensure apt cache is updated
   apt: update_cache=yes cache_valid_time=3600
