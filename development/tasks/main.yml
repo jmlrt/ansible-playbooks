@@ -6,6 +6,6 @@
   - git
   - git-cola
 
-- include: python.yml user={{ ansible_user }}
+- include: python.yml
 - include: atom.yml
-- include: docker.yml user={{ ansible_user }}
+- include: docker.yml

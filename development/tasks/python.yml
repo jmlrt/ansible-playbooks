@@ -7,14 +7,14 @@
     - python-virtualenv
 
 - name: ensure python environment file exists
-  copy: dest=/home/{{ user }}/.environment.d/20python.sh src="files/env_20python.sh"
-          mode=0755 owner={{ user }} group={{ ansible_group }}
+  copy: dest=/home/{{ my_user }}/.environment.d/20python.sh src="files/env_20python.sh"
+          mode=0755 owner={{ my_user }}
 
 - name: create virtualenv for python2.7
-  command: virtualenv /home/{{ user }}/.apps/venv
+  command: virtualenv /home/{{ my_user }}/.apps/venv
 
 - name: ensure python packages are installed in virtualenv
-  pip: name={{ item }} virtualenv=/home/{{ user }}/.apps/venv
+  pip: name={{ item }} virtualenv=/home/{{ my_user }}/.apps/venv
   with_items:
     - ansible
     - awscli

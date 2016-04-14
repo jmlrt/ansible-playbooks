@@ -1,7 +1,7 @@
 ---
 - name: ensure atom package is downloaded
   get_url: url={{ atom_url }} dest={{ ansible_cache }}/{{ atom_package }}
-  become_user: "{{ ansible_user }}"
+  become_user: "{{ my_user }}"
 
 - name: ensure atom is installed
   apt: deb={{ ansible_cache }}/{{ atom_package }}

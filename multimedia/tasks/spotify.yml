@@ -10,7 +10,6 @@
 
 - name: ensure libgcrypt11 package is downloaded
   get_url: url="{{ libgcrypt11_url }}/{{ libgcrypt11_package }}" dest={{ ansible_cache }}/{{ libgcrypt11_package }}
-  become_user: "{{ ansible_user }}"
 
 - name: ensure libgcrypt11 is installed
   apt: deb={{ ansible_cache }}/{{ libgcrypt11_package }}
