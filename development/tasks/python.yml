@@ -5,28 +5,13 @@
     - python-dev
     - python-pip
     - python-virtualenv
+    - python3-dev
+    - python3-pip
+    - python3-virtualenv
 
 - name: ensure python environment file exists
   copy: dest=/home/{{ my_user }}/.environment.d/20python.sh src="files/env_20python.sh"
           mode=0755 owner={{ my_user }}
-
-- name: create virtualenv for python2.7
-  command: virtualenv /home/{{ my_user }}/.apps/venv
-
-- name: ensure python packages are installed in virtualenv
-  pip: name={{ item }} virtualenv=/home/{{ my_user }}/.apps/venv
-  with_items:
-    - awscli
-    - boto3
-    - fabric
-    - jupyter
-
-- name: ensure python3 tools are installed
-  apt: name={{ item }}
-  with_items:
-    - python3-dev
-    - python3-pip
-    - python3-virtualenv
 
 - name: create virtualenv for python3
   command: virtualenv /home/{{ my_user }}/.apps/venv3
@@ -34,4 +19,10 @@
 - name: ensure python3 packages are installed in virtualenv
   pip: name={{ item }} virtualenv=/home/{{ my_user }}/.apps/venv3
   with_items:
+    - awscli
+    - boto3
+    - fabric
+    - grin
+    - jupyter
+    - pyped
     - subuser
