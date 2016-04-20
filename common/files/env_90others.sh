@@ -1,6 +1,9 @@
 #!/bin/sh
 # Environment file for divers stuff
 
+# Source autojump (https://github.com/wting/autojump)
+. /usr/share/autojump/autojump.sh
+
 # Convert Markdown to HTML
 function md2html() {
 	md_file=$1

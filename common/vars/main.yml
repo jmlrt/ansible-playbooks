@@ -1,9 +1,11 @@
 ---
 common_packages:
+  - autojump
   - curl
   - git
   - htop
   - nmap
+  - silversearcher-ag
   - tmux
   - vim
   - wget
