@@ -16,7 +16,6 @@
 - name: ensure python packages are installed in virtualenv
   pip: name={{ item }} virtualenv=/home/{{ my_user }}/.apps/venv
   with_items:
-    - ansible
     - awscli
     - boto3
     - fabric

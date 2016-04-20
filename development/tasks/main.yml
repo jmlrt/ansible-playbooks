@@ -9,5 +9,6 @@
   - shellcheck
 
 - include: python.yml
+- include: ansible.yml
 - include: atom.yml
 - include: docker.yml

@@ -1,0 +1,6 @@
+---
+- name: create virtualenv for ansible
+  command: virtualenv /home/{{ my_user }}/.apps/ansible
+
+- name: ensure ansible is installed in virtualenv
+  pip: name=ansible virtualenv=/home/{{ my_user }}/.apps/ansible
