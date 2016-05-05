@@ -7,6 +7,7 @@ common_packages:
   - nmap
   - silversearcher-ag
   - tmux
+  - unzip
   - vim
   - wget
   - zsh
