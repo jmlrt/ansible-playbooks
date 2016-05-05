@@ -53,6 +53,15 @@ services:
     volumes:
       - shaarli-data:/var/www/shaarli/data
 
+  freshrss:
+    container_name: freshrss
+    image: php:5.6.21-apache
+    restart: always
+    networks:
+      - public
+    volumes:
+      - freshrss-data:/var/www/html
+
 networks:
   public:
     external: true
@@ -67,4 +76,6 @@ volumes:
   owncloud-mysql-data:
     external: true
   shaarli-data:
+    external: true
+  freshrss-data:
     external: true
