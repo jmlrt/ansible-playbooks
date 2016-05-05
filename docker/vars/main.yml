@@ -1,5 +1,4 @@
 ---
-compose_url: https://github.com/docker/compose/releases/download/1.6.2/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
 docker_repo: https://apt.dockerproject.org/repo {{ ansible_distribution|lower }}-{{ ansible_distribution_release }} main
 docker_raspbian_url: https://downloads.hypriot.com/{{ docker_raspbian_package }}
 docker_raspbian_package: docker-hypriot_1.10.3-1_armhf.deb
