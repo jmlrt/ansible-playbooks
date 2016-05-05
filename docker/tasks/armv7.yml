@@ -1,9 +1,9 @@
 ---
-- include: x86_64.yml
-  when: ansible_architecture == "x86_64"
+- name: ensure docker package for raspbian is downloaded
+  get_url: url={{ docker_raspbian_url }} dest={{ ansible_cache }}/{{ docker_raspbian_package }}
 
-- include: armv7.yml
-  when: ansible_architecture == "armv7l"
+- name: ensure docker is installed
+  apt: deb={{ ansible_cache }}/{{ docker_raspbian_package }}
 
 - name: ensure docker is running (and enable it at boot)
   service: name=docker state=started enabled=yes
@@ -13,12 +13,6 @@
 
 - name: ensure user is part of docker group
   user: name={{ my_user }} groups=docker append=yes
-
-- name: ensure pip is installed
-  apt: name=python-pip state=present
-  
-- name: ensure docker-compose is installed
-  pip: name=docker-compose state=present
 
 - name: ensure docker environment file exists
   copy: dest=/home/{{ my_user }}/.environment.d/40docker.sh src="files/env_40docker.sh"

@@ -1,0 +1,18 @@
+---
+- name: ensure apt can work with https
+  apt: name=apt-transport-https
+
+- name: ensure ca certificates are installed
+  apt: name=ca-certificates
+
+- name: ensure docker apt-key is installed
+  apt_key: keyserver=p80.pool.sks-keyservers.net id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: ensure docker repository is installed
+  apt_repository: repo='deb {{ docker_repo }}' update_cache=yes mode=644
+
+- name: ensure that apt is pulling from the right repository
+  command: apt-cache policy docker-engine
+
+- name: ensure docker is at the latest version
+  apt: name=docker-engine state=latest
