@@ -1,0 +1,70 @@
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.10.0
+    restart: always
+    networks:
+      - public
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - nginx-conf:/etc/nginx
+      - nginx-data:/usr/share/nginx/html
+
+  owncloud:
+    container_name: owncloud
+    image: owncloud:9.0.1
+    restart: always
+    networks:
+      - public
+    expose:
+      - 80
+    volumes:
+      - owncloud-data:/var/www/html
+    depends_on:
+      - owncloud-mysql
+
+  owncloud-mysql:
+    container_name: owncloud-mysql
+    image: mysql:5.7.12
+    restart: always
+    networks:
+      - public
+    expose:
+      - 3306
+    volumes:
+      - owncloud-mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=owncloud
+      - MYSQL_USER=owncloud
+    # env_file .env-owncloud-mysql need to contain following variable:
+    # MYSQL_ROOT_PASSWORD=
+    # MYSQL_PASSWORD=
+    env_file: .env-owncloud-mysql
+
+  shaarli:
+    container_name: shaarli
+    image: shaarli/shaarli
+    restart: always
+    networks:
+      - public
+    volumes:
+      - shaarli-data:/var/www/shaarli/data
+
+networks:
+  public:
+    external: true
+
+volumes:
+  nginx-conf:
+    external: true
+  nginx-data:
+    external: true
+  owncloud-data:
+    external: true
+  owncloud-mysql-data:
+    external: true
+  shaarli-data:
+    external: true
