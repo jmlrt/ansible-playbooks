@@ -15,10 +15,10 @@
   user: name={{ my_user }} groups=docker append=yes
 
 - name: ensure pip is installed
-  apt: name=python-pip state=present
-  
+  apt: name=python-pip state=latest
+
 - name: ensure docker-compose is installed
-  pip: name=docker-compose state=present
+  pip: name=docker-compose state=latest
 
 - name: ensure docker environment file exists
   copy: dest=/home/{{ my_user }}/.environment.d/40docker.sh src="files/env_40docker.sh"
