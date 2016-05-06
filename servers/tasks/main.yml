@@ -9,3 +9,5 @@
   user: name=pi state=absent remove=yes
 
 - include: ufw.yml
+- include: fail2ban.yml
+- include: logwatch.yml
