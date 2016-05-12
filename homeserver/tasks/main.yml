@@ -1,0 +1,12 @@
+---
+- name: ensure docker-compose file exists
+  copy: dest=/home/{{ my_user }}/docker-compose.yml src="files/docker-compose.yml"
+          mode=0644 owner={{ my_user }}
+
+- name: ensure freshrss is actualized by cron
+  cron: name="actualize freshrss" minute="*/5"
+          job="/usr/bin/docker exec freshrss php -d date.timezone=Europe/Paris /var/www/html/rss/app/actualize_script.php >> /var/log/cron.log 2>&1"
+
+- name: ensure owncloud is actualized by cron
+  cron: name="actualize owncloud" minute="*/15"
+          job="/usr/bin/docker exec -u www-data owncloud php /var/www/html/cron.php >> /var/log/cron.log 2>&1"
