@@ -1,0 +1,21 @@
+---
+- name: ensure libpam-google-authenticator is installed
+  apt: name=libpam-google-authenticator state=present
+
+- name: ensure pam is configured to use google-authenticator
+  lineinfile: dest=/etc/pam.d/sshd insertbefore=BOF line='auth [success=done new_authtok_reqd=done default=die] pam_google_authenticator.so nullok'
+
+- name: ensure ssh challenge response is enabled
+  lineinfile: dest=/etc/ssh/sshd_config regexp='^ChallengeResponseAuthentication' insertafter='^#ChallengeResponseAuthentication' line='ChallengeResponseAuthentication yes'
+  notify: restart ssh
+
+- name: ensure ssh authentication method is set to both public key and two-factor
+  lineinfile: dest=/etc/ssh/sshd_config regexp='^AuthenticationMethods' insertafter='^#AuthenticationMethods' line='AuthenticationMethods publickey,keyboard-interactive'
+  notify: restart ssh
+
+- name: ensure ntp is installed
+  apt: name=ntp state=present
+
+- name: generate two-factor authentication qr-code
+  shell: google-authenticator -W -f -t -d -r 3 -R 30 -l '{{ my_user }}@{{ ansible_hostname }}'
+  become_user: "{{ my_user }}"
