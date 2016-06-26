@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: create ansible image
+    docker_image:
+      name: ansible
+      path: .
+
+  - name: create ansible container
+    docker_container:
+      name: ansible
+      image: ansible
+      tty: yes
+
+  - name: add container to inventory
+    add_host:
+      name: ansible
+      ansible_connection: docker
+      ansible_user: root
+    changed_when: false
+
+  - include: "{{ item }}"
+    with_items:
+      - "{{ tasks }}"
