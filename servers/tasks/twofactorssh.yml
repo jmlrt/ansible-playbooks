@@ -1,4 +1,7 @@
 ---
+- name: ensure ssh is installed
+  apt: name=openssh-server state=present
+
 - name: ensure libpam-google-authenticator is installed
   apt: name=libpam-google-authenticator state=present
 
