@@ -1,3 +1,6 @@
+#*#
 *.retry
-private-*
+*~
+.#*
 .gitconfig
+private-*
