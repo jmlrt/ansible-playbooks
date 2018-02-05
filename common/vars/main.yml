@@ -1,13 +1,16 @@
 ---
+# vars file for common
+
 common_packages:
-  - autojump
+  - bash
   - curl
   - git
   - htop
-  - nmap
-  - silversearcher-ag
+  - sudo
   - tmux
   - unzip
   - vim
   - wget
-  - zsh
+
+# replace user by your username
+user: admin

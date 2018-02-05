@@ -1,20 +1,22 @@
 ---
-- name: ensure ansible cache directory exists
-  file: path={{ ansible_cache }} state=directory mode=0755 owner={{ ansible_user }} group={{ ansible_group }}
+# tasks file for common
 
 - name: ensure apt cache is updated
-  apt: update_cache=yes cache_valid_time=3600
-
-- name: ensure aptitude is installed
-  apt: name=aptitude
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
 
 - name: ensure common packages are installed
-  apt: name={{ item }}
+  apt:
+    name: "{{ item }}"
   with_items:
     - "{{ common_packages }}"
 
 - name: ensure vim is the default editor
-  alternatives: name=editor path=/usr/bin/vim
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
 
-- include: myuser.yml
+- include: user.yml
+
 - include: ssh.yml

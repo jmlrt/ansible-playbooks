@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: jmlrt
-  description: 
-  company: 
+  description:
+  company:
 
   license: CC-BY
 
@@ -11,9 +11,9 @@ galaxy_info:
   github_branch: development
 
   platforms:
-   - name: Debian
-     versions:
-     - 9
+    - name: Debian
+      versions:
+        - 9
 
   galaxy_tags: []
 

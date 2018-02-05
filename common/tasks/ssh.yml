@@ -1,14 +1,40 @@
 ---
-- name: ensure ssh is at the latest version
-  apt: name=openssh-server
+# ssh server management
 
-- name: ensure ssh is running (and enable it at boot)
-  service: name=ssh state=started enabled=yes
+- name: ensure ssh is enabled and running
+  service:
+    name: ssh
+    state: started
+    enabled: yes
 
 - name: ensure X11Forwarding is disabled
-  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='X11Forwarding' line='X11Forwarding no'
-  notify: restart ssh
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: 'X11Forwarding'
+    line: 'X11Forwarding no'
+  notify: reload ssh
 
-- name: ensure PermitRootLogin is disabled
-  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='PermitRootLogin' line='PermitRootLogin no'
-  notify: restart ssh
+- name: ensure ssh root login is disabled
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: 'PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: reload ssh
+
+- name: ensure ssh password login is disabled
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: "^PasswordAuthentication"
+    line: PasswordAuthentication no
+  notify: reload ssh
+
+- name: ensure user can use ssh
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: 'AllowUsers {{ user }}'
+    line: 'AllowUsers {{ user }}'
+  notify: reload ssh
