@@ -1,0 +1,20 @@
+---
+galaxy_info:
+  author: jmlrt
+  description: 
+  company: 
+
+  license: CC-BY
+
+  min_ansible_version: 1.2
+
+  github_branch: development
+
+  platforms:
+   - name: Debian
+     versions:
+     - 9
+
+  galaxy_tags: []
+
+dependencies: []
