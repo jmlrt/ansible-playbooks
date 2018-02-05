@@ -1,0 +1,16 @@
+---
+# firewall management
+
+- name: ensure deny all default policy is enabled
+  ufw:
+    policy: deny
+
+- name: ensure ssh is allowed
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: ensure ufw is running
+  ufw:
+    state: enabled

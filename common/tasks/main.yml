@@ -20,3 +20,5 @@
 - include: user.yml
 
 - include: ssh.yml
+
+- include: firewall.yml

@@ -8,6 +8,7 @@ common_packages:
   - htop
   - sudo
   - tmux
+  - ufw
   - unzip
   - vim
   - wget
